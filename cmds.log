@@ -1,0 +1,121 @@
+    1  ls
+    2  rm -rf ws1
+    3  ls
+    4  mkdir ws1
+    5  ls
+    6  git init
+    7  mkdir ws1
+    8  rm -rf ws1
+    9  git clone git@github.com:cydang/ws1.git
+   10  ls
+   11  passwd
+   12  wget    https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Books_v1_02.tsv.gz
+   13  ls
+   14  git --version
+   15  mkdir ws1
+   16  ls
+   17  cd ws1
+   18  ls
+   19  git init
+   20  touch newfile.txt
+   21  git status
+   22  git add .
+   23  git status
+   24  git commit -m "This is my first commit yuh"
+   25  git config --global user.email "chloeydang@gmail.com"
+   26  git config --list
+   27  git config --global user.name "Your Name"
+   28  git config --global user.name "Chloe D"
+   29  git config --list
+   30  git remote add origin git@github.com:cydang/ws1.git
+   31  git branch -M main
+   32  git push -u origin main
+   33  git remote add origin git@github.com:cydang/ws1.git
+   34  git branch
+   35  git branch -M main
+   36  git push -u origin main
+   37  git status
+   38  git branch
+   39  git remote add origin git@github.com:cydang/ws1.git
+   40  git branch -M main
+   41  git branch
+   42  git push -u origin main
+   43  git co main
+   44  git checkout main
+   45  git status
+   46  git commit -m "This is my first commit yuh"
+   47  git remote add origin git@github.com:cydang/ws1.git
+   48  git push -u origin main
+   49  ls
+   50  cd ..
+   51  ls
+   52  rmdir ws1
+   53  rmdir -f ws1
+   54  rmdir -rf ws1
+   55  rm -rf ws1
+   56  ls
+   57  mkdir ws1
+   58  ls
+   59  git init
+   60  touch newfile.txt
+   61  ls
+   62  rm newfile.txt
+   63  ls
+   64  cd ws1/
+   65  ls
+   66  touch newfile.txt
+   67  git add .
+   68  git status
+   69  ls
+   70  git branch
+   71  git commit -m "This is my first commit yuh"
+   72  git remote add origin git@github.com:cydang/ws1.git
+   73  git push -u origin main
+   74  mkdir ws1
+   75  cd ws1
+   76  git init
+   77  git branch -m main
+   78  git status
+   79  history > cmds.log
+   80  git status
+   81  git add .
+   82  git status
+   83  git commit -m "history cmd logs"
+   84  git git remote add origin git@github.com:cydang/ws1.git
+   85  git remote add origin git@github.com:cydang/ws1.git
+   86  git push -u origin main
+   87  cd ..
+   88  cd ws1/
+   89  git remote add origin https://github.com/cydang/ws1.git
+   90  git push -u origin main
+   91  cd ..
+   92  rm -rf ws1
+   93  ls
+   94  git clone https://github.com/cydang/ws1.git
+   95  git init
+   96  ls
+   97  cd ws1
+   98  git init
+   99  history > cmds.log
+  100  git status
+  101  git add .
+  102  git commit -m "history cmd log"
+  103  git branch
+  104  git push -u origin main
+  105  ls
+  106  mkdir CS131
+  107  git init
+  108  cd CS131
+  109  git init
+  110  history > cmds.log
+  111  git add .
+  112  git remote add origin https://github.com/cydang/CS-131.git
+  113  git push -u origin main
+  114  cd ..
+  115  rm -rf CS131
+  116  git clone https://github.com/cydang/CS-131.git
+  117  cd CS131
+  118  ls
+  119  cd CS-131
+  120  ls
+  121  history > cmds.log
