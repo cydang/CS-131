@@ -119,3 +119,12 @@
   119  cd CS-131
   120  ls
   121  history > cmds.log
+  122  git add .
+  123  git status
+  124  git commit -m "history cmd log"
+  125  git push -u origin main
+  126  ls
+  127  rm cmds.log
+  128  ls
+  129  mkdir ws1
+  130  history > cmds.log
