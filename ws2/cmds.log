@@ -1,0 +1,11 @@
+    1  gunzip amazon_reviews_us_Books_v1_02.tsv.gz
+    2  grep "  Y       " amazon_reviews_us_Books_v1_02.tsv
+    3  grep "	Y	" amazon_reviews_us_Books_v1_02.tsv
+    4  grep -v "	Y	" amazon_reviews_us_Books_v1_02.tsv
+    5  grep "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc
+    6  grep -v "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc
+    7  grep "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc > counts.txt
+    8  vi counts.txt 
+    9  grep -v "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc >> counts.txt
+   10  vi counts.txt 
+   11  history > cmds.log

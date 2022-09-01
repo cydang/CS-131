@@ -1,0 +1,9 @@
+verified reviews:
+line count: 229347
+word count: 44403448 
+character count: 262431531
+
+unverified reviews:
+line count: 2876174
+word count: 505766319 
+character count: 2976270999
