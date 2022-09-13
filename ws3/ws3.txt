@@ -1,0 +1,15 @@
+Script started on 2022-09-13 00:05:22-04:00
+Sort the customer IDs in order to find the customer who authored the most reviews. Which customers are the top 3 reviewers (with the most reviews)?
+]0;chloe@sjsu:~/CS-131/ws3[chloe@sjsu ws3]$ cut -f 2 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -rn | head -3
+  21922 50122160
+   9964 50732546
+   2664 52615377
+
+Sort the products in order to find the product that has the most reviews. What are the top 3 most reviewed products?
+]0;chloe@sjsu:~/CS-131/ws3[chloe@sjsu ws3]$ cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -rn | head -3
+   4625 043935806X
+   3739 0439139597
+   2666 0525947647
+]0;chloe@sjsu:~/CS-131/ws3[chloe@sjsu ws3]$ exit
+
+Script done on 2022-09-13 00:10:47-04:00
