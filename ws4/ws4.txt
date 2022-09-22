@@ -1,4 +1,7 @@
 Script started on 2022-09-21 22:51:22-04:00
+
+Write an alias called "l" for "ls -latr" to display the files in the current directory in list format.  Write an alias called "w" for "ls -la | wc" to display the number of files in the current directory as a short name. Put these aliases in your .bashrc file, so they will be re-used everytime you login in the future.
+
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ vi ~./[K[K/.bashrc
 [?2004h[?1049h[22;0;0t[?1h=[?2004h[1;24r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[24;1H"~/.bashrc" 18L, 375C[2;1Hâ–½[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[34m# .bashrc
 
@@ -52,57 +55,40 @@ drwxrwxr-x 8 chloe chloe         87 Sep 20 01:45 [0m[38;5;33m..[0m
 drwxrwxr-x 2 chloe chloe         62 Sep 21 22:51 [38;5;33m.[0m
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ w
       5      38     257
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "27925116" amazon_reviews_us_Books_v1_02.tsv | awk -F 
- '      ' '{print $9}' > CUSTOMERS/27925116.txt[1P[1P[1P[1P[1P[1P[6@      
-bash: CUSTOMERS/27925116.txt: No such file or directory
+ 
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ mkdir CUSTOMERS
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ mkdir PRODUCTS
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ mkdir PRODUCTSCUSTOMERSfgrep -h "27925116" amazon_reviews_us_Books_v1_02.tsv | awk -F 
- '      ' '{print $9}' > CUSTOMERS/27925116.txt
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "51917717" amazon_reviews_us_Books_v1_02.tsv | awk -F 
- '      ' '{print $9}' > CUSTOMERS/51917717.txt[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
 
-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[6@      
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "51964897" amazon_reviews_us_Books_v1_02.tsv | awk -F 
- '      ' '{print $9}' > CUSTOMERS/51964897.txt[1P[1P[1P[1P[1P[1P[6@      
+Creating txt files of the helpfulness votes and calculating averages for each customerID:
+
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "27925116" amazon_reviews_us_Books_v1_02.tsv | awk -F '      ' '{print $9}' > CUSTOMERS/27925116.txt
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "51917717" amazon_reviews_us_Books_v1_02.tsv | awk -F '      ' '{print $9}' > CUSTOMERS/51917717.txt 
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "51964897" amazon_reviews_us_Books_v1_02.tsv | awk -F '      ' '{print $9}' > CUSTOMERS/51964897.txt 
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ cd CUSTOMERS/
-]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 
- 27925116.txt
+]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 27925116.txt
 24
-]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 
- 51917717.txt
+]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 51917717.txt
 3.33333
-]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 
- 51964897.txt
+]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ awk '{ total += $1; count++ } END { print total/count }' 51964897.txt
 31.625
 ]0;chloe@sjsu:~/CS-131/ws4/CUSTOMERS[chloe@sjsu CUSTOMERS]$ cd ..
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "1581603681" amazon_reviews_us_Books_v1_02.tsv | awk -
--F '    ' '{print $9}' > PRODUCTS/1581603681.txt[1P[1P[1P[1P[4@    
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "0805076069" amazon_reviews_us_Books_v1_02.tsv | awk -
--F '    ' '{print $9}' > PRODUCTS/0805076069.txt
-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[C[4@    [1@'
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "0373484372" amazon_reviews_us_Books_v1_02.tsv | awk -
--F '    ' '{print $9}â€™ > PRODUCTS/0373484372.txt
-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[4@    
-> '
-awk: cmd. line:1: {print $9}â€™ > PRODUCTS/0373484372.txt
-awk: cmd. line:1:           ^ invalid char 'â' in expression
-]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "0373484372" amazon_reviews_us_Books_v1_02.tsv | awk -
--F '    ' '{print $9}â€™ > PRODUCTS/0373484372.txt
 
-'
-[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1@'
+Creating txt files of the helpfulness votes and calculating averages for each productID:
+
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "1581603681" amazon_reviews_us_Books_v1_02.tsv | awk -F '    ' '{print $9}' > PRODUCTS/1581603681.txt
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "0805076069" amazon_reviews_us_Books_v1_02.tsv | awk -F '    ' '{print $9}' > PRODUCTS/0805076069.txt
+]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ fgrep -h "0373484372" amazon_reviews_us_Books_v1_02.tsv | awk -F '    ' '{print $9}â€™ > PRODUCTS/0373484372.txt
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ cd PRODUCTS/
-]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 1
-1581603681.txt
+]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 1581603681.txt
 5.25
-]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 0
-0805076069.txt
+]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 0805076069.txt
 22.5
-]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 0
-0373484372.txt
+]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ awk '{ total += $1; count++ } END { print total/count }' 0373484372.txt
 5.42857
 ]0;chloe@sjsu:~/CS-131/ws4/PRODUCTS[chloe@sjsu PRODUCTS]$ cd ..
+
+Create README file:
+
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ touch readme.txt
 ]0;chloe@sjsu:~/CS-131/ws4[chloe@sjsu ws4]$ vi readme.txt
 [?2004h[?1049h[22;0;0t[?1h=[?2004h[1;24r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[24;1H"readme.txt" 0L, 0C[2;1Hâ–½[6n[2;1H  [1;1H[>c]10;?]11;?[2;1H[94m~                                                                               [3;1H~                                                                               [4;1H~                                                                               [5;1H~                                                                               [6;1H~                                                                               [7;1H~                                                                               [8;1H~                                                                               [9;1H~                                                                               [10;1H~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [m[24;63H0,0-1[9CAll[1;1H[?25h[27m[23m[29m[m[H[2J[?25l[2;1H[94m~                                                                               [3;1H~                                                                               [4;1H~                                                                               [5;1H~                                                                               [6;1H~                                                                               [7;1H~                                                                               [8;1H~                                                                               [9;1H~                                                                               [10;1H~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [m[24;63H0,0-1[9CAll
