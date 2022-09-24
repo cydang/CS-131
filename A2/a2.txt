@@ -1,0 +1,199 @@
+Script started on 2022-09-24 18:12:02-04:00
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ [K[chloe@sjsu A2]$ [K[chloe@sjsu A2]$ [K[chloe@sjsu A2]$ [K[chloe@sjsu A2]$ [K[chloe@sjsu A2]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ ls
+a2.txt  downloaded_tweets_extend_nolf2.tsv  downloaded_tweets_extend_original_nolf2.tsv
+
+
+1) Find the top 10 users who replied the most to other users(downloaded_tweets_extend_original_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ awk -F '       ' '$6 != "" && $6 != $2' downloaded_tweets_extend_original_nolf2.tsv | cut -f 2 | sort | uniq -c | sort -rn | head
+counts  users
+     34 1387010761994682371
+     19 1573800344
+     17 1921951394
+     17 1240682348120866816
+     15 94350709
+     14 940778288871542786
+     11 29447428
+     10 90107770
+     10 1401861298233647106
+      9 531618878
+
+2) Find the top 10 users who got the most replies from other users (downloaded_tweets_extend_original_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ cut -f 6 downloaded_tweets_extend_original_nolf2.tsv | sort | uniq -c | sort -rn | head -11
+Exclude null count:
+  38743 
+   
+counts  users
+    238 18831926
+    107 380648579
+     83 16050065
+     46 3453306553
+     39 544732668
+     37 1094971056358637568
+     36 172323296
+     36 140496030
+     31 29447428
+     30 1240682348120866816
+
+3) Find the top 10 users who retweeted the most other tweets (downloaded_tweets_extend_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ grep "retweeted" downloaded_tweets_extend_nolf2.tsv | cut -f 2 | sort | uniq -c | sort -rn | head
+counts  users
+   2065 45379403
+   1678 77726331
+   1641 870244616003403781
+   1582 1028022611324747776
+   1312 711608180535640064
+   1281 139109800
+   1234 177400353
+   1216 832019161454817280
+   1159 29447428
+   1139 1060440219097423872
+
+5) Find the 30 hashtags used most frequently overall for anything (downloaded_tweets_extend_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ cut -d "       " -f 4 downloaded_tweets_extend_original_nolf2.tsv | sort | uniq -c | sort -nr | head -30[1P[1P[1P[1P[1P[1P[1P[7@       
+counts  hashtags
+    969 Ukraine
+    734 LongCovid
+    721 auspol
+    571 COVID19
+    310 StandWithUkraine
+    267 PMQs
+    247 BREAKING
+    181 ableg
+    175 cdnpoli
+    173 Russia
+    139 "Russia,Ukraine"
+    123 Omicron
+    118 onpoli
+    116 OneOfUsAllOfUs
+    110 COVIDisAirborne
+    107 insiders
+     98 SOTU
+     91 Brexit
+     89 COVID
+     89 bcpoli
+     88 Kyiv
+     88 ChefsForUkraine
+     84 "Ukraine,Russia"
+     84 RepublicanTTTTTTPredators
+     82 "เจ้าแก้มก้อน,fluke_natouch"
+     82 Mariupol
+     79 Partygate
+     79 DemVoice1
+     74 longcovid
+     72 CovidIsNotOver
+
+6) Find the 30 hashtags that got retweeted the most (downloaded_tweets_extend_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ grep "retweeted" downloaded_tweets_extend_nolf2.tsv | cut -f 4 | tr -d '"' |tr ',' '\n' | sort | uniq -c | sort -nr | head -31
+Exclude null count:
+  20641 
+counts hashtags  
+   2510 Ukraine
+   1096 COVID19
+   1029 Russia
+    956 LongCovid
+    397 Russian
+    362 BREAKING
+    348 auspol
+    317 Kyiv
+    316 Omicron
+    287 Mariupol
+    274 เจ้าแก้มก้อน
+    240 StandWithUkraine
+    228 Putin
+    222 BA2
+    218 Ukrainian
+    199 fluke_natouch
+    178 PMQs
+    169 COVID
+    146 Covid19
+    138 ableg
+    128 Kharkiv
+    121 โอห์มไง
+    116 Anonymous
+    114 UkraineRussiaWar
+    114 NATO
+    113 UK
+    111 China
+    105 Partygate
+    104 OhmThitiwat
+    104 longcovid
+
+7) Find the 30 hashtags that got replied the most (downloaded_tweets_extend_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ grep "replied_to" downloaded_tweets_extend_nolf2.tsv | cut -f 4 | tr -d '"' |tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+counts	hashtags
+    883 FBPE
+    875 FollowBackFriday
+    429 PutinHitler
+    319 StandWithUkraine
+    263 COVID19
+    216 StopPutinNOW
+    211 RussiaSanctions
+    207 BoycottRussia
+    191 PutinWarCriminal
+    181 bcpoli
+    149 Ottawa
+    130 bced
+    122 COVID19BC
+    115 Genocide
+    108 NeverVoteConservative
+    106 BoycottATP
+    100 onpoli
+     98 LongCovid
+     92 VoteFordOut
+     92 COVIDisAirborne
+     91 Ukraine
+     84 ClimateCrisis
+     77 Putin
+     72 Canada
+     65 cdnpoli
+     65 Apartheid
+     64 UkraineInvasion
+     62 N95
+     60 Ontario
+     58 MaskUp
+
+8) Find the 30 hashtags that got quoted the most (downloaded_tweets_extend_nolf.csv)
+
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ grep "quote" downloaded_tweets_extend_nolf2.tsv | cut -f 4 | tr -d '"' |tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+counts	hashtags
+    186 COVID19
+    151 StandWithUkraine
+    140 VoteFordOut
+    113 Genocide
+    111 ableg
+    104 onpoli
+    100 NeverVoteConservative
+     93 bcpoli
+     79 Ukraine
+     76 MaskMandate
+     76 COVIDisAirborne
+     72 Ontario
+     65 Putin
+     64 COVID19AB
+     64 BDS
+     61 MaskUp
+     60 PutinHitler
+     59 COVID19BC
+     59 cdnpoli
+     57 Ottawa
+     56 Canada
+     54 bced
+     53 CovidIsNotOver
+     49 LongCovid
+     49 covid19
+     47 PutinWarCriminal
+     46 VoteThemAllOut2022
+     46 FreePalestine
+     44 StopPutinNOW
+     43 VoteLiberal
+]0;chloe@sjsu:~/CS-131/A2[chloe@sjsu A2]$ exit
+
+Script done on 2022-09-24 18:14:21-04:00
