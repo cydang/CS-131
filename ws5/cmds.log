@@ -1,2 +1,6 @@
-  108  script ws5.txt
-  109  history > cmds.log
+  1  script ws5.txt
+  2  cut -f 2 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -rn | head -1000 | awk '{print $2}' > customer_reviews.txt
+  3  vi forloop.sh
+  4  mkdir CUSTOMERS
+  5  bash forloop.sh
+  6  history > cmds.log
