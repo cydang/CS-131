@@ -1,0 +1,9 @@
+  1  vi calc_avg_rating.sh
+  2  cat calc_avg_rating.sh
+  3  crontab -e
+  4  crontab -l
+  5  ls PRODUCTS/
+  6  source calc_avg_rating.sh
+  7  echo "US      1234    HDFAHFEU124     15816036811     12345678        Opening Combination Padlocks: No Tools, No Problem      Books   2        5     7       N       Headline        Review body     2007-11-21" >> PRODUCTS/1581603681.$DATETIME.txt
+  8  cat PRODUCTS/1581603681.$DATETIME.txt
+  9  history > cmds.log
