@@ -1,5 +1,5 @@
  1  grep 1581603681 amazon_reviews_us_Books_v1_02.tsv | cut -f 14 > 1581603681_review_body.txt
  2  cat 1581603681_review_body.txt
- 3  sed 's/[,;.]//g;;s/\<and\>//g;s/\<or\>//g;s/\<if\>//g;s/\<in\>//g;;s/\<it\>//g;s/<[^>]\+>/ /g' 1581603681_review_body.txt > output.txt
+ 3  sed 's/[,;.]//g;s/\<and\>//g;s/\<or\>//g;s/\<if\>//g;s/\<in\>//g;;s/\<it\>//g;s/<[^>]\+>/ /g' 1581603681_review_body.txt > output.txt
  4  cat output.txt
  5  history > cmds.log
