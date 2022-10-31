@@ -1,12 +1,8 @@
 Script started on 2022-10-31 16:56:14-04:00
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == "Y" {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > verified.txt
-]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == “N” {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > unverified.txt
-awk: cmd. line:1: $12 == “N” {print $0}
-awk: cmd. line:1:        ^ invalid char '�' in expression
-awk: cmd. line:1: $12 == “N” {print $0}
-awk: cmd. line:1:        ^ syntax error
-]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == “N” {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > unverified.txt[1P[1@"[C[C[1P[1@"
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == "N" {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > unverified.txt[1P[1@"[C[C[1P[1@"
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' verified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100
+
 2386790 the
 1262833 of
 1261366 and
@@ -107,12 +103,24 @@ awk: cmd. line:1:        ^ syntax error
   54794 people
   52127 really
   51953 way
-]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100
-^C
-]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100[C[C[C[1@h[1@e[1@a[1@d[1@ [1@-[1@1[1@0[1@0[1@0[1P[1@ [1@u[1@n[1@v[1@e[1@r[9@ified.txt[1@ [1@| sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100 [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
-
-^C
+  
+  
+  
+The top 10 most frequent interesting words (not including stop words or common words) in verified.txt are:
+553438 book
+308215 books
+155444 read
+139180 about
+125618 more
+102922 very
+93760 good
+86020 great
+82467 well
+78600 story
+
+
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ head -100 unverified.txt | sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P
+
    1063 the
     554 of
     551 and
@@ -213,6 +221,19 @@ awk: cmd. line:1:        ^ syntax error
      25 way
      24 people
      24 however
+     
+The top 10 most frequent interesting words (not including stop words or common words) in the first 100 reviews in unverified.txt are:
+242 book
+133 books
+98 her
+77 all
+74 about
+73 she
+73 his
+55 read
+51 more
+49 story
+
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ exit
 
 Script done on 2022-10-31 17:14:47-04:00
