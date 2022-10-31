@@ -1,0 +1,218 @@
+Script started on 2022-10-31 16:56:14-04:00
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == "Y" {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > verified.txt
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == “N” {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > unverified.txt
+awk: cmd. line:1: $12 == “N” {print $0}
+awk: cmd. line:1:        ^ invalid char '�' in expression
+awk: cmd. line:1: $12 == “N” {print $0}
+awk: cmd. line:1:        ^ syntax error
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ awk -F '\t' '$12 == “N” {print $0}' ../amazon_reviews_us_Books_v1_02.tsv > unverified.txt[1P[1@"[C[C[1P[1@"
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' verified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100
+2386790 the
+1262833 of
+1261366 and
+1088384 a
+1075290 to
+ 701813 is
+ 690282 i
+ 681513 in
+ 558745 this
+ 553438 book
+ 534724 it
+ 489271 that
+ 463767 br
+ 418495 for
+ 405936 s
+ 308215 books
+ 304278 you
+ 300242 with
+ 290156 as
+ 271390 us
+ 262380 on
+ 251172 are
+ 239545 n
+ 238637 y
+ 233112 not
+ 232966 but
+ 222579 was
+ 209500 have
+ 197297 r
+ 195769 quot
+ 193239 be
+ 177766 his
+ 166709 one
+ 165591 an
+ 164960 he
+ 164544 t
+ 155444 read
+ 152983 from
+ 152926 by
+ 145891 all
+ 142483 or
+ 139180 about
+ 133694 at
+ 132633 my
+ 126947 if
+ 125618 more
+ 124111 who
+ 120895 has
+ 120554 what
+ 115070 so
+ 110752 her
+ 107202 there
+ 103201 can
+ 103048 they
+ 102922 very
+ 102759 will
+  98369 how
+  96307 some
+  93760 good
+  92819 like
+  88181 out
+  87967 would
+  86020 great
+  82467 well
+  82426 their
+  82013 just
+  80778 me
+  80280 which
+  78797 your
+  78600 story
+  78330 she
+  77923 other
+  76214 we
+  75567 time
+  72987 many
+  72351 when
+  72123 up
+  71310 only
+  70879 life
+  70570 than
+  69418 first
+  67755 much
+  67624 also
+  67438 no
+  67373 had
+  67319 into
+  67116 most
+  65032 do
+  61175 author
+  60695 been
+  58585 reading
+  58418 were
+  57913 even
+  57595 them
+  57403 get
+  56652 new
+  55879 these
+  54794 people
+  52127 really
+  51953 way
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100
+^C
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100[C[C[C[1@h[1@e[1@a[1@d[1@ [1@-[1@1[1@0[1@0[1@0[1P[1@ [1@u[1@n[1@v[1@e[1@r[9@ified.txt[1@ [1@| sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100 [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+^C
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ head -100 unverified.txt | sed -e  's/[^A-Za-z]/ /g' unverified.txt | tr 'A-Z' 'a-z' | tr ' ' '\n' | grep -v '^$'| sort | uniq -c | sort -rn | head -100[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P
+   1063 the
+    554 of
+    551 and
+    479 to
+    441 a
+    323 is
+    307 in
+    263 i
+    250 br
+    245 that
+    242 book
+    233 it
+    221 this
+    202 n
+    160 as
+    158 s
+    156 for
+    133 books
+    130 with
+    125 you
+    122 us
+    113 not
+    111 was
+     98 her
+     98 be
+     98 are
+     94 on
+     91 t
+     88 he
+     86 have
+     85 r
+     82 one
+     82 but
+     77 all
+     74 from
+     74 about
+     73 she
+     73 his
+     71 what
+     69 by
+     65 at
+     62 they
+     61 will
+     59 has
+     57 so
+     56 or
+     55 read
+     51 would
+     51 their
+     51 more
+     49 who
+     49 story
+     47 some
+     47 can
+     46 if
+     44 up
+     44 me
+     43 like
+     43 its
+     42 which
+     42 there
+     42 my
+     41 well
+     41 out
+     41 an
+     40 great
+     37 no
+     37 most
+     36 how
+     34 time
+     34 just
+     34 gor
+     34 been
+     33 your
+     31 had
+     31 first
+     30 we
+     30 than
+     30 many
+     29 very
+     29 only
+     29 much
+     29 life
+     29 know
+     29 even
+     28 when
+     28 these
+     28 do
+     28 also
+     27 love
+     27 good
+     26 them
+     26 see
+     26 reading
+     26 into
+     26 get
+     26 best
+     25 way
+     24 people
+     24 however
+]0;chloe@sjsu:/mnt/scratch/chloe/ws8[chloe@sjsu ws8]$ exit
+
+Script done on 2022-10-31 17:14:47-04:00

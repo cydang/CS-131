@@ -1,0 +1,13 @@
+   77  script ws8.txt 
+   78  ls
+   79  history > cmds.log
+   80  cat cmds.log 
+   81  mv ws8.txt ../../../../home/chloe/CS-131/ws8/
+   82  ls ../../../../home/chloe/CS-131/ws8/
+   83  cd ../../../../home/chloe/CS-131/ws8/
+   84  ls
+   85  rm verified.txt 
+   86  git status
+   87  git add ws8.txt 
+   88  git pull
+   89  history > cmds.log
