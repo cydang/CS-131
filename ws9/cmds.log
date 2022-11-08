@@ -1,0 +1,5 @@
+  1  vi randomsample.sh
+  2  cat randomsample.sh
+  3  chmod u+rx randomsample.sh 
+  4  ./randomsample.sh 1 ../amazon_reviews_us_Books_v1_02.tsv 
+  5  history > cmds.log
