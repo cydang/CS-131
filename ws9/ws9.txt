@@ -26,22 +26,21 @@ fi
 
 max_lines=`wc -l $2 | cut -d' ' -f1`
 num_lines=`expr $max_lines \* $1 / 100`
-echo "number of lines:"
-echo $num_lines
 
-while [ "$num_lines" -gt 0 ]; do
-     random_line=`shuf -i 1-$max_lines -n 1`
-     sed -n "${random_line}p" $2
-     num_lines=`expr $num_lines - 1`
-done
+start=1
+
+for (( i=$start; i<=$max_lines; i++ ))
+do
+        if [ $(($RANDOM % 100)) -le $1 ]; then
+                echo `awk "NR==$i" $2`
+        fi
+done 
 
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws9[chloe@sjsu ws9]$ chmod u+rx randomsample.sh 
 
 [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[30@./randomsample.sh 1 ../amazon_reviews_us_Books_v1_02.tsv[C
 valid integer
 ../amazon_reviews_us_Books_v1_02.tsv file exists
-number of lines:
-31055
 US	24894972	R3O754Y4N00WBN	0975481983	666952349	Modern Day Heroes: In Defense of America (The Red Volume)	Books	4	2	2	N	N	Teach Children Patriotism	Modern Day Heroes gives positive support for political leaders, military and community people who have defended our freedom abroad and worked to maintain safety at home.  This book can be a reference for parents who want to teach their children about our era, an important period in history.  It is a good snapshot of modern heroism to build patriotism and unity. <br /> <br />Christine McClung <br />Author, <br />Epic Heroes- <br />Dinner Talk for Champions	2004-10-08
 US	29171668	R3RU18QVYZ3HS0	0786868716	891971809	The Five People You Meet In Heaven	Books	5	0	1	N	N	great read	i read this book in the bath tub and loved it. I recommend you do hte same.	2004-07-12
 US	22180259	RMW8AJWSUM2WI	0060094737	629386241	Claws	Books	2	0	1	N	N	Claws	Jed's got a great girlfriend, good grades, and a star rike in the tennis team. He figures his life is pretty well perfect until he gets a note telling him to meet at a nearby cafe. He shows, and this pink-haired punk girl sits down and tells him that his father is having an affair with her mother. Angst, angst, stuff falls apart, and in the end it all comes down to a kayak, a sudden storm, and a rescue by helicopter. <br />I was okay with this one (good, solid read even if I liked Zipped by Laura and Tom Mcneal MUCH more as a variant on the whole parent-having-an-affair thing) up until the last chapter, which came completely out of left field. The ending didn't fit with the rest of the tone and story, and left me feeling vaguely cheated as a reader.	2004-10-18
