@@ -1,0 +1,29 @@
+Script started on 2022-11-15 20:47:55-05:00
+]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ cat numbers.sh
+#!/bin/bash
+
+awk -F '\t' 'NR>1 { total+=$9; nums[NR] = $9
+} END {
+        asort(nums)
+        avg = total/ (NR - 1)
+        printf "min %s max %s avg %s\n",\
+                nums[1],\
+                nums[(NR - 1)],\
+                avg
+}' /mnt/scratch/chloe/ws10/amazon_reviews_us_Books_v1_02.tsv
+
+]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ time python3 numbers.py
+min 0 max 15835 avg 9.33467921636312
+
+real	0m19.426s
+user	0m18.742s
+sys	0m0.680s
+]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ time sh numbers.sh
+min 0 max 15835 avg 9.33468
+
+real	0m24.539s
+user	0m24.117s
+sys	0m0.422s
+]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ exit
+
+Script done on 2022-11-15 20:49:19-05:00
