@@ -1,4 +1,5 @@
 Script started on 2022-11-15 20:47:55-05:00
+]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ vi numbers.sh
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ cat numbers.sh
 #!/bin/bash
 
@@ -27,3 +28,6 @@ sys	0m0.422s
 ]0;chloe@sjsu:/mnt/scratch/chloe/ws10[chloe@sjsu ws10]$ exit
 
 Script done on 2022-11-15 20:49:19-05:00
+
+Do you think the Python program or the shell script runs faster on your input file? 
+A The Python program runs faster on the input file than the shell script.
