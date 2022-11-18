@@ -1,0 +1,152 @@
+Script started on 2022-11-17 18:45:23-05:00
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ fgrep "retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | sed -e 's/.*id=\(.*\)type.*/\1/' | awk '!//^$/' > referenced_tweet_ids_unsorted.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ fgrep "retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2"\t"$4}}' | awk '!/id/' > retweet_author_ids_unssorted.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ paste referenced_tweet_ids_unsorted.txt retweet_author_ids_unsorted.txt | sort > reference_tweet_and_author_ids_sorted.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' referenced_tweet_ids_unsorted.txt downloaded_tweets_extend_original_nolf2.tsv | sort >  original_tweet_and_author_ids_sorted.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ join original_tweet_and_author_ids_sorted.txt reference_tweet_and_author_ids_sorted.txt -a2 | tr ' ' \\t | tr A-Z a-z | cut -f2- | sort >> original_author_to_retweet_author_graph.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ awk '{print $1}' original_author_to_retweet_author_graph.txt | uniq -c | sort -nr | awk '{if ($1>2){print $2}}' > influencer_retweet.txt [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ mkdir retweet_cluster_leaders
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ awk 'NR==FNR{a[$0]++;next}{if($1 in a){print $3 >> "retweet_cluster_leaders/"$1".txt"}}' influencer_retweet.txt original_author_to_retweeet_author_graph.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cd retweet_cluster_leaders/
+]0;chloe@sjsu:~/CS-131/A5/retweet_cluster_leaders[chloe@sjsu retweet_cluster_leaders]$ for FILE in `ls`; do sed -i '/^$/d' $FILE ; cat $FILE | tr -d '"' | tr ',' '\n' >> temp && mv temp $FILE; done
+]0;chloe@sjsu:~/CS-131/A5/retweet_cluster_leaders[chloe@sjsu retweet_cluster_leaders]$ cd ..
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cut -f 3 original_author_to_retweet_author_graph.txt | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr > count_H_entire_dataset_retweeet.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ wc -l count_H_entire_dataset_retweet.txt
+9765 count_H_entire_dataset_retweet.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cd retweet_cluster_leaders/
+]0;chloe@sjsu:~/CS-131/A5/retweet_cluster_leaders[chloe@sjsu retweet_cluster_leaders]$ for FILE in `ls` ; do for HASHTAG in `cat $FILE | uniq` ; do count_H_in_C=`grep $HASHTAG $FILE | wc -l` ; count_hashhtags_in_C=`cat $FILE | wc -l` ; count_H_entire_dataset=`awk -v h="$HASHTAG" -F ' ' '{if ($2==h) print $1}' ../count_H_entire_dataset_retweet.txt` ; countt_hashtags_entire_dataset=9764 ; frequency_H_in_C=`echo "$count_H_in_C / $count_hashtags_in_C" | bc -l` ; frequency_H_overall=`echo "$count_H_entire_datasset / $count_hashtags_entire_dataset" | bc -l` ; relative_frequency_H_C=`echo "$frequency_H_in_C / $frequency_H_overall" | bc -l` ; echo -e "$HASHTAG\t${FFILE//[!0-9]/}\t$relative_frequency_H_C\t$frequency_H_in_C\t$frequency_H_overall\t$count_H_in_C\t$count_hashtags_in_C\t$count_H_entire_dataset\t$count_hasshtags_entire_dataset"; done ; done > ../retweets_hashtags_freqs_table.tsv
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+(standard_in) 1: syntax error
+(standard_in) 2: syntax error
+]0;chloe@sjsu:~/CS-131/A5/retweet_cluster_leaders[chloe@sjsu retweet_cluster_leaders]$ cd ..
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ echo "hashtag_H   cluster_C_leader(userID)   relative_frequency_H_C  frequency_H_in_C  frequency_H_overall   count_H_in_C   count_hashtaggs_in_C   count_H_entire_dataset    count_hashtags_entire_dataset" > header.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[8@        [8Pcount_H_entire_dataset[C[C[C[C[C[C[C[C[Ccount_H_entire_dataset [C[C[C[C[C[C[C[Ccount_H_entire_dataset [C[C[C[C[C[C[C count_H_entire_dataset[C[C[C[C[C[C[C[C[C[Ccount_H_entire_dataset [C[C[C[C[C[C[C count_H_entire_dataset[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccount_hashtags_in_C [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccount_hashtags_in_C [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccount_hashtags_in_C [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C      count_hash[8@tags_in_C  [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccount_H_in_C count_H_in_C count_H_in_C count_hashtags_in_[8P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C     count_H_in_C    count_hash[8@tags_in_[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfrequency_H_overall frequency_H_overall   frequency_H_overallfrequency_H_in_C frequency_H_in_C     frequency_H_in_C        frequency_H_overall     count_H_in_C    co[8@unt_hash[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Crelative_frequency_H_C relative_frequency_H_C relative_frequency_H_C      relative_frequency_H_Ccluster_C_leader(userID) cluster_C_leader(userID) cluster_C_leader(userID)         cluster_C_leader(userID)        relative_frequency_H_C  frequency_H_in_C        frequency_H_overall     count_H_in[8@_C     count_hashtags_in_C[A[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cat header.txt retweets_hashtags_freqs_table.tsv > temp && mv temp retweets_hashtags_freqs_table.tsv
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ head retweets_hashtags_freqs_table.tsv 
+hashtag_H	cluster_C_leader(userID)	relative_frequency_H_C	frequency_H_in_C	frequency_H_overall	count_H_in_C	count_hashtags_in_C	count_H_entire_dataset	count_hashtags_entire_dataset
+edinburgh	1001228776032763905	221.90909090909090937898	.25000000000000000000	.00112658746415403523	1	4	11	9764
+gattini	1001228776032763905	2441.00000000000011150488	.25000000000000000000	.00010241704219582138	1	4	1	9764
+adotta	1001228776032763905	2441.00000000000011150488	.25000000000000000000	.00010241704219582138	1	4	1	9764
+space	1001228776032763905	221.90909090909090937898	.25000000000000000000	.00112658746415403523	1	4	11	9764
+darnitsky	1003107003693137921	85.64912280701754773527	.01754385964912280701	.00020483408439164276	1	57	2	9764
+russian	1003107003693137921	1.67939456484348125249	.07017543859649122807	.04178615321589512494	4	57	408	9764
+arwx	1003107003693137921	85.64912280701754773527	.01754385964912280701	.00020483408439164276	1	57	2	9764
+arkansas	1003107003693137921	85.64912280701754773527	.01754385964912280701	.00020483408439164276	1	57	2	9764
+cbsla	1003107003693137921	42.82456140350877282228	.01754385964912280701	.00040966816878328553	1	57	4	9764
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ [K[chloe@sjsu A5]$ grep replied downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $0}}' > replies.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ awk -F '\t' '{print $6}' replies.txt | uniq -c | sort -nr | awk '{if($1>2){print $2}}' > influencer_replies.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ mkdir reply_cluster_leaders
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ awk -F '\t' 'NR==FNR{a[$0]++;next}{if($6 in a){print $4 >> "reply_cluster_leaders/"$6".txt"}}' influencer_replies.txt replies.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cd reply_cluster_leaders/
+]0;chloe@sjsu:~/CS-131/A5/reply_cluster_leaders[chloe@sjsu reply_cluster_leaders]$ for FILE in `ls`; do sed -i '/^$/d' $FILE ; cat $FILE | tr A-Z a-z | tr -d '"' | tr ',' '\n' >> temp && mv temp $FILE;  done
+]0;chloe@sjsu:~/CS-131/A5/reply_cluster_leaders[chloe@sjsu reply_cluster_leaders]$ cd ..
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cut -f 4 replies.txt | tr A-Z a-z | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr > count_H_entire_dataset_reply.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ wc -l count_H_entire_dataset_reply.txt
+2730 count_H_entire_dataset_reply.txt
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cd reply_cluster_leaders/
+]0;chloe@sjsu:~/CS-131/A5/reply_cluster_leaders[chloe@sjsu reply_cluster_leaders]$ for FILE in `ls` ; do for HASHTAG in `cat $FILE | uniq` ; do count_H_in_C=`grep $HASHTAG $FILE | wc -l` ; count_hashtaggs_in_C=`cat $FILE | wc -l` ; count_H_entire_dataset=`awk -v h="$HASHTAG" -F ' ' '{if ($2==h) print $1}' ../count_H_entire_dataset_reply.txt` ; count_hashttags_entire_dataset=2730 ; frequency_H_in_C=`echo "$count_H_in_C / $count_hashtags_in_C" | bc -l` ; frequency_H_overall=`echo "$count_H_entire_dataset / $ccount_hashtags_entire_dataset" | bc -l` ; relative_frequency_H_C=`echo "$frequency_H_in_C / $frequency_H_overall" | bc -l` ; echo -e "$HASHTAG\t${FILE//[!00-9]/}\t$relative_frequency_H_C\t$frequency_H_in_C\t$frequency_H_overall\t$count_H_in_C\t$count_hashtags_in_C\t$count_H_entire_dataset\t$count_hashtags_enttire_dataset"; done ; done > ../replies_hashtags_freqs_table.tsv
+]0;chloe@sjsu:~/CS-131/A5/reply_cluster_leaders[chloe@sjsu reply_cluster_leaders]$ cd ..
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ cat header.txt replies_hashtags_freqs_table.tsv > temp && mv temp replies_hashtags_freqs_table.tsv
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ head replies_hashtags_freqs_table.tsv
+hashtag_H	cluster_C_leader(userID)	relative_frequency_H_C	frequency_H_in_C	frequency_H_overall	count_H_in_C	count_hashtags_in_C	count_H_entire_dataset	count_hashtags_entire_dataset
+handsoffhitler	1046608631968538624	148.23529411764705897127	.92307692307692307692	.00622710622710622710	12	13	17	2730
+stopkissinger	1046608631968538624	210.00000000000000019110	.07692307692307692307	.00036630036630036630	1	13	1	2730
+handsoffhitler	1046608631968538624	148.23529411764705897127	.92307692307692307692	.00622710622710622710	12	13	17	2730
+muskoka	1236324668640047105	12.18750000000000001023	.01785714285714285714	.00146520146520146520	2	112	4	2730
+balafalls	1236324668640047105	24.37500000000000002047	.00892857142857142857	.00036630036630036630	1	112	1	2730
+hydroplant	1236324668640047105	24.37500000000000002047	.00892857142857142857	.00036630036630036630	1	112	1	2730
+muskokalakes	1236324668640047105	24.37500000000000002047	.00892857142857142857	.00036630036630036630	1	112	1	2730
+bala	1236324668640047105	48.75000000000000004095	.01785714285714285714	.00036630036630036630	2	112	1	2730
+bracebridge	1236324668640047105	24.37500000000000002047	.00892857142857142857	.00036630036630036630	1	112	1	2730
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ sort -k 3 replies_hashtags_freqs_table.tsv | head -n 30
+borisjohnson	90732175	10.00000000000000000910	.01098901098901098901	.00109890109890109890	1	91	3	2730
+privatizing	90732175	10.00000000000000000910	.01098901098901098901	.00109890109890109890	1	91	3	2730
+scheerlosers	90732175	10.00000000000000000910	.01098901098901098901	.00109890109890109890	1	91	3	2730
+snowday	90732175	10.00000000000000000910	.01098901098901098901	.00109890109890109890	1	91	3	2730
+teachers	90732175	10.00000000000000000910	.01098901098901098901	.00109890109890109890	1	91	3	2730
+doctors	90732175	10.00000000000000000910	.02197802197802197802	.00219780219780219780	2	91	6	2730
+doctors	90732175	10.00000000000000000910	.02197802197802197802	.00219780219780219780	2	91	6	2730
+syria	3300678755	10.11111111111111112021	.05555555555555555555	.00549450549450549450	1	18	15	2730
+canada	26347394	10.45977011494252873780	.27586206896551724137	.02637362637362637362	16	58	72	2730
+canada	26347394	10.45977011494252873780	.27586206896551724137	.02637362637362637362	16	58	72	2730
+canada	26347394	10.45977011494252873780	.27586206896551724137	.02637362637362637362	16	58	72	2730
+canada	26347394	10.45977011494252873780	.27586206896551724137	.02637362637362637362	16	58	72	2730
+putinwarcrimes	1443759943	10.45977011494252874535	.03448275862068965517	.00329670329670329670	1	29	9	2730
+empathy	94350709	105.00000000000000009555	.07692307692307692307	.00073260073260073260	1	13	2	2730
+weekendvibes	728273994	105.00000000000000009555	.07692307692307692307	.00073260073260073260	1	13	2	2730
+putinwarcriminal	7767002	1.05875509016870273424	.07407407407407407407	.06996336996336996336	2	27	191	2730
+putinwarcriminal	7767002	1.05875509016870273424	.07407407407407407407	.06996336996336996336	2	27	191	2730
+rightwing	1236324668640047105	1.05978260869565217480	.00892857142857142857	.00842490842490842490	1	112	23	2730
+convoypartyofcanada	90732175	1.07142857142857142850	.01098901098901098901	.01025641025641025641	1	91	28	2730
+standwithukraine	306832085	1.10425725553645464662	.12903225806451612903	.11684981684981684981	4	31	319	2730
+standwithukraine	306832085	1.10425725553645464662	.12903225806451612903	.11684981684981684981	4	31	319	2730
+standwithukraine	306832085	1.10425725553645464662	.12903225806451612903	.11684981684981684981	4	31	319	2730
+standwithukraine	306832085	1.10425725553645464662	.12903225806451612903	.11684981684981684981	4	31	319	2730
+highway413	1236324668640047105	1.10795454545454545547	.00892857142857142857	.00805860805860805860	1	112	22	2730
+putinwarcrimes	7767002	11.23456790123456791033	.03703703703703703703	.00329670329670329670	1	27	9	2730
+standwithukraine	79352723	1.14106583072100313483	.13333333333333333333	.11684981684981684981	2	15	319	2730
+standwithukraine	79352723	1.14106583072100313483	.13333333333333333333	.11684981684981684981	2	15	319	2730
+fordfailedthepeople	381685461	11.47058823529411765830	.07142857142857142857	.00622710622710622710	1	14	17	2730
+healthcare	90732175	1.15384615384615384720	.01098901098901098901	.00952380952380952380	1	91	26	2730
+ltc	90732175	1.15384615384615384720	.01098901098901098901	.00952380952380952380	1	91	26	2730
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ sort -k 3 retweets_hashtags_freqs_table.tsv | head -n 30
+재현	67934675		.00763358778625954198		1	131		9764
+데이식스	2573480784		.02325581395348837209		1	43		9764
+원필	2573480784		.02325581395348837209		1	43		9764
+ทำบุญขึ้นห้อง609	2542032578		.02380952380952380952		1	42		9764
+ทำบุญขึ้นห้อง609	3972812140		.02631578947368421052		1	38		9764
+fluke_natouch	18831926	.04716110802521312783	.00113507377979568671	.02406800491601802539	1	881	235	9764
+covid19	42836999	.05619891792333371697	.00588235294117647058	.10467021712412945514	1	170	1022	9764
+ukraine	1402072207694589954	.06598545670802584270	.01694915254237288135	.25686194182712003277	1	59	2508	9764
+เจ้าแก้มก้อน	18831926	.08209526211796359323	.00227014755959137343	.02765260139287177386	2	881	270	9764
+เจ้าแก้มก้อน	18831926	.08209526211796359323	.00227014755959137343	.02765260139287177386	2	881	270	9764
+covid19	1891490382	.08659047776707007757	.00906344410876132930	.10467021712412945514	3	331	1022	9764
+covid19	1891490382	.08659047776707007757	.00906344410876132930	.10467021712412945514	3	331	1022	9764
+kharkiv	18831926	.08795920941210384956	.00113507377979568671	.01290454731667349446	1	881	126	9764
+kyiv	1891490382	.09104472045056133662	.00302114803625377643	.03318312167144612863	1	331	324	9764
+omicron	1891490382	.09189560568841705004	.00302114803625377643	.03287587054485866448	1	331	321	9764
+ukraine	159021888	.09269385585175058857	.02380952380952380952	.25686194182712003277	1	42	2508	9764
+russia	813314931147816960	.09626343290939564227	.01020408163265306122	.10600163867267513314	1	98	1035	9764
+ukraine	1495480590572961792	.09636489964785952277	.02475247524752475247	.25686194182712003277	5	202	2508	9764
+ukraine	1495480590572961792	.09636489964785952277	.02475247524752475247	.25686194182712003277	5	202	2508	9764
+ukraine	1495480590572961792	.09636489964785952277	.02475247524752475247	.25686194182712003277	5	202	2508	9764
+ukraine	1495480590572961792	.09636489964785952277	.02475247524752475247	.25686194182712003277	5	202	2508	9764
+ukraine	1125443593085358082	.09732854864433811802	.02500000000000000000	.25686194182712003277	1	40	2508	9764
+ทำบุญขึ้นห้อง609	234694571		.10000000000000000000		2	20		9764
+pmqs	1375127026840039424	10.01435897435897436012	.20000000000000000000	.01997132322818517001	1	5	195	9764
+pmqs	1445729339438505984	10.01435897435897436012	.20000000000000000000	.01997132322818517001	1	5	195	9764
+pmqs	18020612	10.01435897435897436012	.20000000000000000000	.01997132322818517001	1	5	195	9764
+pmqs	464119756	10.01435897435897436012	.20000000000000000000	.01997132322818517001	1	5	195	9764
+pmqs	496456374	10.01435897435897436012	.20000000000000000000	.01997132322818517001	1	5	195	9764
+bbcpapers	885891622919184384	10.01435897435897436263	.02666666666666666666	.00266284309709135600	2	75	26	9764
+bbcpapers	885891622919184384	10.01435897435897436263	.02666666666666666666	.00266284309709135600	2	75	26	9764
+]0;chloe@sjsu:~/CS-131/A5[chloe@sjsu A5]$ exit
+
+Script done on 2022-11-17 19:10:52-05:00
