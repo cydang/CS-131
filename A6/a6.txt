@@ -1,0 +1,47 @@
+Script started on 2022-12-05 20:04:29-05:00
+[chloe@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+[chloe@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+[chloe@sjsu A6]$ grep replied downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{{if ($2!=$6){print $0}}' > REPLIES_NOBOTS.tsv
+[chloe@sjsu A6]$ grep replied downloaded_tweets_extend_original_nolf2.tsv | awk --F '\t' '{if ($2!=$6){print $0}}' >> REPLIES_NOBOTS.tsv
+[chloe@sjsu A6]$ awk -F '\t' '{print $6}' REPLIES_NOBOTS.tsv | sort | uniq -c | ssort -nr | awk '{if($1>2){print $2}}' | sort > influencers.txt
+[chloe@sjsu A6]$ wc -l influencers.txt 
+466 influencers.txt
+[chloe@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' influencers..txt REPLIES_NOBOTS.tsv > replied_to_influencers.txt
+[chloe@sjsu A6]$ ec[Kw[K[Kwc -l replied_to_influencers.txt 
+2479 replied_to_influencers.txt
+[C[C[C[C[C[C
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuencers.txt
+[chloe@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' users_replieed_to_influencers.txt REPLIES_NOBOTS.tsv ?[K> replies to[K[K[K_toIn[K[Kin[K[K_influencers[K_repliers.txt
+[chloe@sjsu A6]$ wc -l replies_to_influencer_repliers.txt 
+339 replies_to_influencer_repliers.txt
+[chloe@sjsu A6]$ awk '{print $3}' replied_to_influencers.txt | sort | uniq -c | ssort -nr -k 1 | head
+     40 2022-02-17
+     38 2022-02-24
+     36 2022-02-26
+     36 2022-02-23
+     34 2022-02-12
+     33 2022-01-13
+     32 2022-02-16
+     30 2022-04-29
+     30 2022-03-25
+     30 2022-02-14
+[chloe@sjsu A6]$ awk -F '\t' '{print $8}' replied_to_influencers.txt > influence r_replies_text.txt
+_replies_text.txt | tr -d '[:punct:]' | sed 's/ \++/ /g' | sed 's/\t/ /g' | sed 's/ /\n/g' | tr A-Z a-z > filtered_text.txt
+[chloe@sjsu A6]$ fgrep -v -w -f /usr/share/groff/current/eign filtered_text.txt || sort | uniq -c | sort -nr | head -n 14
+    456 amp
+    455 
+    155 ford
+    149 has
+    120 covid19
+    103 putinhitler
+    101 ontario
+    101 need
+     93 doug
+     90 its
+     90 covid
+     89 canada
+     81 standwithukraine
+     74 ukraine
+[chloe@sjsu A6]$ exit
+
+Script done on 2022-12-05 20:08:10-05:00
