@@ -2,18 +2,28 @@ Script started on 2022-12-05 20:04:29-05:00
 [chloe@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
 [chloe@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
 [chloe@sjsu A6]$ grep replied downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{{if ($2!=$6){print $0}}' > REPLIES_NOBOTS.tsv
+
+1- How many such influential users exist?
+
 [chloe@sjsu A6]$ grep replied downloaded_tweets_extend_original_nolf2.tsv | awk --F '\t' '{if ($2!=$6){print $0}}' >> REPLIES_NOBOTS.tsv
 [chloe@sjsu A6]$ awk -F '\t' '{print $6}' REPLIES_NOBOTS.tsv | sort | uniq -c | ssort -nr | awk '{if($1>2){print $2}}' | sort > influencers.txt
 [chloe@sjsu A6]$ wc -l influencers.txt 
 466 influencers.txt
+
+2- How many users replied to them in total?
+
 [chloe@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' influencers..txt REPLIES_NOBOTS.tsv > replied_to_influencers.txt
 [chloe@sjsu A6]$ ec[Kw[K[Kwc -l replied_to_influencers.txt 
 2479 replied_to_influencers.txt
-[C[C[C[C[C[C
-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuencers.txt
-[chloe@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' users_replieed_to_influencers.txt REPLIES_NOBOTS.tsv ?[K> replies to[K[K[K_toIn[K[Kin[K[K_influencers[K_repliers.txt
+
+3- How many of the users who replied to the influential users also got replied to from any other user (at least once)?
+
+[chloe@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' users_replied_to_influencers.txt REPLIES_NOBOTS.tsv ?[K> replies_to_influencers_repliers.txt
 [chloe@sjsu A6]$ wc -l replies_to_influencer_repliers.txt 
 339 replies_to_influencer_repliers.txt
+
+4- Extract the dates of the replies in format YY-MM-DD and find the top 10 dates on which the most replies happened.
+
 [chloe@sjsu A6]$ awk '{print $3}' replied_to_influencers.txt | sort | uniq -c | ssort -nr -k 1 | head
      40 2022-02-17
      38 2022-02-24
@@ -25,6 +35,10 @@ Script started on 2022-12-05 20:04:29-05:00
      30 2022-04-29
      30 2022-03-25
      30 2022-02-14
+     
+5- Repeat what you did in worksheets 7 and 8 to find the most frequent words (not considering stopwords) in the tweet text (last column) for those users. Which words are the most frequent in that tweet text? Are they what you expected based on the frequent hashtags from previous assignments?
+A: The words that are the most frequent in the tweet text are listed below with the exception of "amp," "has," and "its." The words that are most frequent are what I expected based on the frequent hashtags from previous assignments. 
+
 [chloe@sjsu A6]$ awk -F '\t' '{print $8}' replied_to_influencers.txt > influence r_replies_text.txt
 _replies_text.txt | tr -d '[:punct:]' | sed 's/ \++/ /g' | sed 's/\t/ /g' | sed 's/ /\n/g' | tr A-Z a-z > filtered_text.txt
 [chloe@sjsu A6]$ fgrep -v -w -f /usr/share/groff/current/eign filtered_text.txt || sort | uniq -c | sort -nr | head -n 14
